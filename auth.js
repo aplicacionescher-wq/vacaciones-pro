@@ -1,27 +1,23 @@
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } 
-from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-const auth = getAuth();
-
-// LOGIN
-window.login = async () => {
-  const email = document.getElementById("email").value;
-  const pass = document.getElementById("password").value;
-
-  await signInWithEmailAndPassword(auth, email, pass);
-};
-
-// REDIRECCIÓN SEGÚN ROL
 onAuthStateChanged(auth, async (user) => {
   if (user) {
+    console.log("Usuario logueado:", user.uid);
+
     const ref = doc(db, "usuarios", user.uid);
     const snap = await getDoc(ref);
+
+    if (!snap.exists()) {
+      alert("No tienes rol asignado");
+      console.error("No existe documento en colección usuarios");
+      return;
+    }
+
     const rol = snap.data().rol;
+    console.log("Rol:", rol);
 
     if (rol === "admin") {
-      window.location = "admin.html";
+      window.location.href = "admin.html";
     } else {
-      window.location = "dashboard.html";
+      window.location.href = "dashboard.html";
     }
   }
 });
