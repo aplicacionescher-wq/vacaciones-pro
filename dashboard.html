@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Mis Vacaciones</title>
+<link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+<h2>Solicitar Vacaciones</h2>
+
+<label>Fecha inicio</label>
+<input type="date" id="inicio">
+
+<label>Fecha fin</label>
+<input type="date" id="fin">
+
+<label>Periodo</label>
+<select id="periodo">
+  <option value="1">Periodo 1</option>
+  <option value="2">Periodo 2</option>
+</select>
+
+<button onclick="solicitar()">Enviar</button>
+
+<h3>Mis solicitudes</h3>
+<div id="misSolicitudes"></div>
+
+<script type="module" src="./js/user.js"></script>
+
+</body>
+</html>
